@@ -1,0 +1,27 @@
+========== Resolution Analysis ==========
+
+Total Images in CSV     : 1676
+Successfully Processed  : 1676
+Missing Images          : 0
+
+----- WIDTH -----
+Minimum : 58
+Maximum : 2775
+Mean    : 482.90
+Median  : 276.00
+Std Dev : 474.81
+
+----- HEIGHT -----
+Minimum : 64
+Maximum : 2039
+Mean    : 346.06
+Median  : 222.50
+Std Dev : 313.56
+
+----- AREA -----
+Minimum : 5776
+Maximum : 4897678
+Mean    : 308811.83
+Median  : 61252.50
+Std Dev : 586529.69
+
