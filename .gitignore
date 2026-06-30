@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# macOS/Linux
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Model checkpoints
+
+
+# Training outputs
+
+
+# Cache
+.cache/
+
+# Dataset 
+data/original_2172/
+data/upscaled/
+data/train/
+data/val/
+data/test/
+data/anpr raw from onplus/
+data/cropped_1676/
+
+
+
+
+# Temporary files
+*.tmp
