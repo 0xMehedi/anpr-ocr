@@ -84,6 +84,35 @@ def save_analysis(df):
 
     print(f"\nResolution analysis saved to:")
     print(output_csv)
+#
+#percentile analysys
+
+def generate_percentiles(df):
+
+    percentile_file = RESULTS_DIR / "resolution_percentiles.txt"
+
+    percentiles = [5, 10, 25, 50, 75, 90, 95]
+
+    with open(percentile_file, "w", encoding="utf-8") as f:
+
+        f.write("========== Resolution Percentiles ==========\n\n")
+
+        for column in ["width", "height", "area"]:
+
+            f.write(f"----- {column.upper()} -----\n")
+
+            values = df[column].quantile([p / 100 for p in percentiles])
+
+            for p, value in zip(percentiles, values):
+                f.write(f"{p:>2}% : {value:.2f}\n")
+
+            f.write("\n")
+
+    print("Percentile report saved to:")
+    print(percentile_file)
+
+
+
 
 
 # ==========================
@@ -174,6 +203,16 @@ def export_smallest_images(df):
     print(output)
 
 
+
+#percentile
+
+
+
+
+
+
+
+
 # ==========================
 # Main
 # ==========================
@@ -191,6 +230,8 @@ def main():
     save_analysis(analysis_df)
 
     generate_summary(analysis_df, missing)
+
+    generate_percentiles(analysis_df)
 
     for column in ["width", "height", "area"]:
         plot_histogram(analysis_df, column)
