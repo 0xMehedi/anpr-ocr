@@ -24,73 +24,50 @@ REPORT_CSV = REPORT_DIR / "augmentation_report.csv"
 # Dataset Configuration
 # ==========================================================
 
-# One original + three augmented versions
+# Original + 3 augmentations = 4 images per sample
 OUTPUT_MULTIPLIER = 4
 
-# Random seed for reproducibility
 RANDOM_SEED = 42
 
-# Image extension for augmented images
 IMAGE_EXTENSION = ".jpg"
 
 # ==========================================================
 # Lighting Augmentation
 # ==========================================================
 
-BRIGHTNESS_LIMIT = 0.20
-CONTRAST_LIMIT = 0.20
+BRIGHTNESS_RANGE = (0.8, 1.2)
+CONTRAST_RANGE = (0.8, 1.2)
 
-GAMMA_LIMIT = (80, 120)
-
-CLAHE_CLIP_LIMIT = 2.0
+GAMMA_RANGE = (0.8, 1.2)
 
 JPEG_QUALITY = (60, 95)
 
 # ==========================================================
-# Camera Quality Augmentation
+# Camera Quality
 # ==========================================================
 
-GAUSSIAN_NOISE_STD = (10, 40)
+GAUSSIAN_NOISE_STD = (5, 20)
 
-GAUSSIAN_BLUR = (3, 5)
+GAUSSIAN_BLUR_KERNEL = (3, 5)
 
-MOTION_BLUR = 5
+MOTION_BLUR_KERNEL = 5
 
 # ==========================================================
-# Geometry Augmentation
+# Geometry
 # ==========================================================
 
 ROTATION_LIMIT = 3
 
-PERSPECTIVE_SCALE = (0.02, 0.05)
+PERSPECTIVE_SHIFT = 0.03
 
-SCALE_LIMIT = 0.05
+SCALE_RANGE = (0.95, 1.05)
 
-TRANSLATE_LIMIT = 0.02
-
-# ==========================================================
-# Probabilities
-# ==========================================================
-
-P_BRIGHTNESS = 0.8
-P_GAMMA = 0.5
-P_CLAHE = 0.3
-P_JPEG = 0.5
-
-P_NOISE = 0.6
-P_GAUSSIAN_BLUR = 0.5
-P_MOTION_BLUR = 0.4
-
-P_ROTATION = 0.7
-P_PERSPECTIVE = 0.5
-P_AFFINE = 0.5
+TRANSLATION_PERCENT = 0.02
 
 # ==========================================================
 # Adaptive Augmentation
 # ==========================================================
 
-# Images with area below this percentile
-# will receive lighter augmentations.
 LOW_RESOLUTION_PERCENTILE = 25
 
 # ==========================================================
