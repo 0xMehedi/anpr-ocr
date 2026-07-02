@@ -24,51 +24,86 @@ REPORT_CSV = REPORT_DIR / "augmentation_report.csv"
 # Dataset Configuration
 # ==========================================================
 
-# Original + 3 augmentations = 4 images per sample
+# Original + Light + Camera + Geometry
 OUTPUT_MULTIPLIER = 4
 
+# Reproducibility
 RANDOM_SEED = 42
 
+# Image Extension
 IMAGE_EXTENSION = ".jpg"
 
 # ==========================================================
 # Lighting Augmentation
 # ==========================================================
 
-BRIGHTNESS_RANGE = (0.8, 1.2)
-CONTRAST_RANGE = (0.8, 1.2)
+# Contrast multiplier
+CONTRAST_RANGE = (0.2, 2.0)
 
-GAMMA_RANGE = (0.8, 1.2)
+# Brightness multiplier
+BRIGHTNESS_RANGE = (0.2, 2.0)
 
-JPEG_QUALITY = (60, 95)
+# Gamma correction
+GAMMA_RANGE = (0.2, 2.2)
+
+# JPEG Compression Quality
+JPEG_QUALITY = (25, 95)
+
+# CLAHE
+CLAHE_CLIP_LIMIT = 2.5
+CLAHE_TILE_GRID_SIZE = (8, 8)
 
 # ==========================================================
 # Camera Quality
 # ==========================================================
 
-GAUSSIAN_NOISE_STD = (5, 20)
+# Gaussian Noise (standard deviation)
+GAUSSIAN_NOISE_STD = (8, 25)
 
-GAUSSIAN_BLUR_KERNEL = (3, 5)
+# Gaussian Blur kernel sizes
+GAUSSIAN_BLUR_KERNEL = (3, 5, 7)
 
-MOTION_BLUR_KERNEL = 5
+# Motion Blur kernel size
+MOTION_BLUR_KERNEL = 7
 
 # ==========================================================
 # Geometry
 # ==========================================================
 
-ROTATION_LIMIT = 3
+# Rotation (degrees)
+ROTATION_LIMIT = 5
 
-PERSPECTIVE_SHIFT = 0.03
+# Perspective distortion
+PERSPECTIVE_SHIFT = 0.05
 
-SCALE_RANGE = (0.95, 1.05)
+# Scaling
+SCALE_RANGE = (0.90, 1.10)
 
-TRANSLATION_PERCENT = 0.02
+# Translation (% of image)
+TRANSLATION_PERCENT = 0.03
 
 # ==========================================================
 # Adaptive Augmentation
 # ==========================================================
 
+# Images below this percentile receive lighter augmentation
 LOW_RESOLUTION_PERCENTILE = 25
+
+# ==========================================================
+# Pipeline Behaviour
+# ==========================================================
+
+# Lighting pipeline
+LIGHTING_MIN_OPERATIONS = 2
+LIGHTING_MAX_OPERATIONS = 3
+
+# Camera pipeline
+CAMERA_MIN_OPERATIONS = 1
+CAMERA_MAX_OPERATIONS = 2
+
+# Geometry pipeline
+GEOMETRY_MIN_OPERATIONS = 1
+GEOMETRY_MAX_OPERATIONS = 2
 
 # ==========================================================
 # Logging

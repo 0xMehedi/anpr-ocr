@@ -14,6 +14,27 @@ from augmentation.config import (
     CONTRAST_RANGE,
     GAMMA_RANGE,
     JPEG_QUALITY,
+    CLAHE_CLIP_LIMIT,
+    CLAHE_TILE_GRID_SIZE,
+    GAUSSIAN_NOISE_STD,
+    GAUSSIAN_BLUR_KERNEL,
+    MOTION_BLUR_KERNEL,
+    ROTATION_LIMIT,
+    PERSPECTIVE_SHIFT,
+    SCALE_RANGE,
+    TRANSLATION_PERCENT,
+)
+
+
+
+
+
+
+from augmentation.config import (
+    BRIGHTNESS_RANGE,
+    CONTRAST_RANGE,
+    GAMMA_RANGE,
+    JPEG_QUALITY,
     GAUSSIAN_NOISE_STD,
     GAUSSIAN_BLUR_KERNEL,
     MOTION_BLUR_KERNEL,
@@ -28,10 +49,18 @@ from augmentation.config import (
 # ==========================================================
 
 def adjust_brightness_contrast(image):
-    alpha = random.uniform(*CONTRAST_RANGE)     # contrast
-    beta = random.uniform(-40, 40)              # brightness
 
-    return cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
+    alpha = random.uniform(*CONTRAST_RANGE)
+
+    brightness = random.uniform(*BRIGHTNESS_RANGE)
+
+    beta = int((brightness - 1.0) * 100)
+
+    return cv2.convertScaleAbs(
+        image,
+        alpha=alpha,
+        beta=beta
+    )
 
 
 def gamma_correction(image):
@@ -46,6 +75,25 @@ def gamma_correction(image):
 
     return cv2.LUT(image, table)
 
+def clahe(image):
+    """
+    Apply Contrast Limited Adaptive Histogram Equalization (CLAHE).
+    """
+
+    lab = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
+
+    l, a, b = cv2.split(lab)
+
+    clahe_filter = cv2.createCLAHE(
+        clipLimit=CLAHE_CLIP_LIMIT,
+        tileGridSize=CLAHE_TILE_GRID_SIZE
+    )
+
+    l = clahe_filter.apply(l)
+
+    merged = cv2.merge((l, a, b))
+
+    return cv2.cvtColor(merged, cv2.COLOR_LAB2BGR)
 
 def jpeg_compression(image):
 
